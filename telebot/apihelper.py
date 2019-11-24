@@ -966,6 +966,109 @@ def stop_poll(token, chat_id, message_id, reply_markup=None):
     return _make_request(token, method_url, params=payload)
 
 
+def add_chat_user(token, chat_id, user_id, fwd_limit):
+    method_url = 'addChatUser'
+    payload = {'chat_id': chat_id, 'user_id': user_id, 'fwd_limit': fwd_limit}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def check_chat_invite(token, hash):
+    method_url = 'checkChatInvite'
+    payload = {'hash': hash}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def create_chat(token, users, title):
+    method_url = 'createChat'
+    payload = {'users': users, title: title}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def delete_chat_user(token, chat_id, user_id):
+    method_url = 'deleteChatUser'
+    payload = {'chat_id': chat_id, 'user_id': user_id}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def edit_chat_about(token, peer, about):
+    method_url = 'editChatAbout'
+    payload = {'peer': peer, 'about': about}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def edit_chat_admin(token, chat_id, user_id, is_admin=False):
+    method_url = 'editChatAdmin'
+    payload = {'chat_id': chat_id, 'user_id': user_id, 'is_admin': is_admin}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def edit_chat_default_banned_rights(token, peer, banned_rights):
+    method_url = 'editChatDefaultBannedRights'
+    payload = {'peer': peer, 'banned_rights': banned_rights}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def edit_chat_photo(token, chat_id, photo):
+    method_url = 'editChatPhoto'
+    payload = {'chat_id': chat_id}
+    files = None
+    if not util.is_string(photo):
+        files = {'photo': photo}
+    else:
+        payload['photo'] = photo
+    return _make_request(token, method_url, params=payload, files=files, method='post')
+
+
+def edit_chat_title(token, chat_id, title):
+    method_url = 'editChatTitle'
+    payload = {'chat_id': chat_id, 'title': title}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def export_chat_invite(token, peer):
+    method_url = 'exportChatInvite'
+    payload = {'peer': peer}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def get_all_chats(token, except_ids=None):
+    method_url = 'getAllChats'
+    payload = {}
+    if except_ids is not None:
+        payload['except_ids'] = except_ids
+    return _make_request(token, method_url, params=payload)
+
+
+def get_chats(token, id):
+    method_url = 'getChats'
+    payload = {'id': id}
+    return _make_request(token, method_url, params=payload)
+
+
+def get_common_chats(token, user_id, max_id, limit):
+    method_url = 'getCommonChats'
+    payload = {'user_id': user_id, 'max_id': max_id, 'limit': limit}
+    return _make_request(token, method_url, params=payload)
+
+
+def get_full_chat(token, chat_id):
+    method_url = 'getFullChat'
+    payload = {'chat_id': chat_id}
+    return _make_request(token, method_url, params=payload)
+
+
+def import_chat_invite(token, hash):
+    method_url = 'importChatInvite'
+    payload = {'hash': hash}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
+def migrate_chat(token, chat_id):
+    method_url = 'migrateChat'
+    payload = {'chat_id': chat_id}
+    return _make_request(token, method_url, params=payload, method='post')
+
+
 def _convert_list_json_serializable(results):
     ret = ''
     for r in results:

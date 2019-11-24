@@ -1051,6 +1051,49 @@ class TeleBot:
     def stop_poll(self, chat_id, message_id):
         return types.Poll.de_json(apihelper.stop_poll(self.token, chat_id, message_id))
 
+    def add_chat_user(self, chat_id, user_id, fwd_limit):
+        return apihelper.add_chat_user(self.token, chat_id, user_id, fwd_limit)
+
+    def check_chat_invite(self, hash):
+        return apihelper.check_chat_invite(self.token, hash)
+
+    def create_chat(self, users, title):
+        return apihelper.create_chat(self.token, users, title)
+
+    def delete_chat_user(self, chat_id, user_id):
+        return apihelper.delete_chat_user(self.token, chat_id, user_id)
+
+    def edit_chat_about(self, peer, about):
+        return apihelper.edit_chat_about(self.token, peer, about)
+
+    def edit_chat_admin(self, chat_id, user_id, is_admin=False):
+        return apihelper.edit_chat_admin(self.token, chat_id, user_id, is_admin)
+
+    def edit_chat_default_banned_rights(self, peer, banned_rights):
+        return apihelper.edit_chat_default_banned_rights(self.token, peer, banned_rights)
+
+    def edit_chat_photo(self, chat_id, photo):
+        return apihelper.edit_chat_photo(self.token, chat_id, photo)
+
+    def edit_chat_title(self, chat_id, title):
+        return apihelper.edit_chat_title(self.token, chat_id, title)
+
+    def export_chat_invite(self, peer):
+        return apihelper.export_chat_invite(self.token, peer)
+
+    def get_all_chats(self, except_ids=None):
+        result = apihelper.get_all_chats(self.token, except_ids)
+        return [types.Chat.de_json(r) for r in result]
+
+    def get_full_chat(self, chat_id):
+        return types.Chat.de_json(apihelper.get_full_chat(self.token, chat_id))
+
+    def import_chat_invite(self, hash):
+        return apihelper.import_chat_invite(self.token, hash)
+
+    def migrate_chat(self, chat_id):
+        return apihelper.migrate_chat(self.token, chat_id)
+
     def answer_shipping_query(self, shipping_query_id, ok, shipping_options=None, error_message=None):
         return apihelper.answer_shipping_query(self.token, shipping_query_id, ok, shipping_options, error_message)
 
@@ -1765,3 +1808,67 @@ class AsyncTeleBot(TeleBot):
     @util.async_dec()
     def stop_poll(self, *args, **kwargs):
         return TeleBot.stop_poll(self, *args, **kwargs)
+
+    @util.async_dec()
+    def add_chat_user(self, *args, **kwargs):
+        return TeleBot.add_chat_user(self, *args, **kwargs)
+
+    @util.async_dec()
+    def check_chat_invite(self, *args, **kwargs):
+        return TeleBot.check_chat_invite(self, *args, **kwargs)
+
+    @util.async_dec()
+    def create_chat(self, *args, **kwargs):
+        return TeleBot.create_chat(self, *args, **kwargs)
+
+    @util.async_dec()
+    def delete_chat_user(self, *args, **kwargs):
+        return TeleBot.delete_chat_user(self, *args, **kwargs)
+
+    @util.async_dec()
+    def edit_chat_about(self, *args, **kwargs):
+        return TeleBot.edit_chat_about(*args, **kwargs)
+
+    @util.async_dec()
+    def edit_chat_admin(self, *args, **kwargs):
+        return TeleBot.edit_chat_admin(*args, **kwargs)
+
+    @util.async_dec()
+    def edit_chat_default_banned_rights(self, *args, **kwargs):
+        return TeleBot.edit_chat_default_banned_rights(*args, **kwargs)
+
+    @util.async_dec()
+    def edit_chat_photo(self, *args, **kwargs):
+        return TeleBot.edit_chat_photo(*args, **kwargs)
+
+    @util.async_dec()
+    def edit_chat_title(self, *args, **kwargs):
+        return TeleBot.edit_chat_title(*args, **kwargs)
+
+    @util.async_dec()
+    def export_chat_invite(self, *args, **kwargs):
+        return TeleBot.export_chat_invite(*args, **kwargs)
+
+    @util.async_dec()
+    def get_all_chats(self, *args, **kwargs):
+        return TeleBot.get_all_chats(*args, **kwargs)
+
+    @util.async_dec()
+    def get_chats(self, *args, **kwargs):
+        return TeleBot.get_chats(*args, **kwargs)
+
+    @util.async_dec()
+    def get_common_chats(self, *args, **kwargs):
+        return TeleBot.get_common_chats(*args, **kwargs)
+
+    @util.async_dec()
+    def get_full_chat(self, *args, **kwargs):
+        return TeleBot.get_full_chat(*args, **kwargs)
+
+    @util.async_dec()
+    def import_chat_invite(self, *args, **kwargs):
+        return TeleBot.import_chat_invite(*args, **kwargs)
+
+    @util.async_dec()
+    def migrate_chat(self, *args, **kwargs):
+        return TeleBot.migrate_chat(*args, **kwargs)
